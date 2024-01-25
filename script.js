@@ -15,37 +15,45 @@ function scrollToSection(id) {
 // Función que se ejecuta al cargar el DOM y lo que busca es comparar distintas alturas de elementos y verificar si el footer
 // debe estar con una posición absoluta o no
 
-window.onload = function () {
+function footerPosition() {
   // A continuación genero variables que almacenaran la altura de la navbar, la altura del footer, la altura del main de la página,
   // la altura del header y la altura del viewport, en caso de que la suma de todas las variables anteriores no supera la altura del viewport
   // el footer será de posición absoluta con bottom 0.
-  const navbarHeight = document.querySelector(".nav").offsetHeight;
-  const footerHeight = document.querySelector(".footer").offsetHeight;
-  const mainHeight = document.querySelector(".main").offsetHeight;
-  const headerHeight = document.querySelector(".header").offsetHeight;
+  const navHeight = document.getElementById("navbar").offsetHeight;
+  const footerHeight = document.getElementById("footer").offsetHeight;
+  let mainHeight = document.getElementById("main").offsetHeight;
+  const headerHeight = document.getElementById("header").offsetHeight;
   const viewportHeight = window.innerHeight;
 
-  console.log(
-    navbarHeight +
-      "navbarHeight" +
-      footerHeight +
-      "footerHeight" +
-      mainHeight +
-      "mainHeight" +
-      headerHeight +
-      "headerHeight" +
-      viewportHeight +
-      "viewportHeight"
-  );
-
+  // En caso de que la suma de todas las variables anteriores no supera la altura del viewport
+  // el footer será de posición absoluta con bottom 0.
   if (
-    navbarHeight + footerHeight + mainHeight + headerHeight <
+    navHeight + footerHeight + mainHeight + headerHeight <
     viewportHeight
   ) {
-    document.querySelector(".footer").style.position = "absolute";
-    document.querySelector(".footer").style.bottom = "0";
+    document.getElementById("footer").style.position = "absolute";
+    document.getElementById("footer").style.bottom = "0";
+  } else {
+    document.getElementById("footer").style.position = "unset";
+    document.getElementById("footer").style.bottom = "unset";
   }
 };
+
+// Cuando carga el DOM, se llama al a función "footerPosition"
+
+document.addEventListener("DOMContentLoaded", footerPosition);
+
+// Se inicia un observer para detectar cambios en las alturas de los elementos de la página
+
+const observer = new MutationObserver(footerPosition);
+
+// Se configura el observer para detectar cambios en las alturas de los elementos de la página
+
+const config = { attributes: true, childList: true, subtree: true };
+
+// Se le pide al observer que observe los cambios en el body de la página y se le pasa la configuración
+ 
+observer.observe(document.body, config);
 
 // Función para validar texto sin caracteres especiales o acentos
 function validarTexto(inputText) {
