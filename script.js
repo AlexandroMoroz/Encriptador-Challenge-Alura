@@ -12,10 +12,45 @@ function scrollToSection(id) {
   });
 }
 
+// Función que se ejecuta al cargar el DOM y lo que busca es comparar distintas alturas de elementos y verificar si el footer
+// debe estar con una posición absoluta o no
+
+window.onload = function () {
+  // A continuación genero variables que almacenaran la altura de la navbar, la altura del footer, la altura del main de la página,
+  // la altura del header y la altura del viewport, en caso de que la suma de todas las variables anteriores no supera la altura del viewport
+  // el footer será de posición absoluta con bottom 0.
+  const navbarHeight = document.querySelector(".nav").offsetHeight;
+  const footerHeight = document.querySelector(".footer").offsetHeight;
+  const mainHeight = document.querySelector(".main").offsetHeight;
+  const headerHeight = document.querySelector(".header").offsetHeight;
+  const viewportHeight = window.innerHeight;
+
+  console.log(
+    navbarHeight +
+      "navbarHeight" +
+      footerHeight +
+      "footerHeight" +
+      mainHeight +
+      "mainHeight" +
+      headerHeight +
+      "headerHeight" +
+      viewportHeight +
+      "viewportHeight"
+  );
+
+  if (
+    navbarHeight + footerHeight + mainHeight + headerHeight <
+    viewportHeight
+  ) {
+    document.querySelector(".footer").style.position = "absolute";
+    document.querySelector(".footer").style.bottom = "0";
+  }
+};
+
 // Función para validar texto sin caracteres especiales o acentos
 function validarTexto(inputText) {
   var regex = /^[a-zA-Z0-9\s]+$/;
-  return regex.test(inputText);
+  return regex.test(inputText) && !/[A-Z]/.test(inputText);
 }
 
 // Se crea una función adicional para verificar si el textarea que contiene el resultado está vacio o no
@@ -32,13 +67,13 @@ function checkResult() {
 // Se crean funciones para encriptar y desencriptar
 
 function encrypt() {
-  const inputValue = document.getElementById("message").value.toLowerCase();
+  const inputValue = document.getElementById("message").value;
   let encryptedMessage = document.getElementById("result");
   encryptedMessage.value = "";
 
   if (!validarTexto(inputValue)) {
     alert(
-      "El texto contiene caracteres especiales o acentos. Por favor, ingresa un texto válido."
+      "El texto contiene caracteres especiales, acentos o mayúsculas. Por favor, ingresa un texto válido."
     );
     return;
   }
@@ -66,13 +101,13 @@ function encrypt() {
 }
 
 function decrypt() {
-  const inputValue = document.getElementById("message").value.toLowerCase();
+  const inputValue = document.getElementById("message").value;
   let decryptedMessage = document.getElementById("result");
   decryptedMessage.value = "";
 
   if (!validarTexto(inputValue)) {
     alert(
-      "El texto contiene caracteres especiales o acentos. Por favor, ingresa un texto válido."
+      "El texto contiene caracteres especiales, acentos o mayúsculas. Por favor, ingresa un texto válido."
     );
     return;
   }
