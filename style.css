@@ -1,0 +1,254 @@
+/* Cambio de fuente a GeistMono y agregado el scroll smooth al html */
+
+@font-face {
+  font-family: "GeistMono";
+  src: url("./GeistMono-Regular.otf");
+}
+
+html {
+  scroll-behavior: smooth;
+  height: 100%;
+}
+
+/* Estilización de la barra de scroll para darle un toque más elegante */
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Se utiliza la fuente GeistMono y se aplica un background a todo el cuerpo de la página */
+
+body {
+  font-family: "GeistMono" !important;
+  margin: 0;
+  color: whitesmoke !important;
+  background-image: url(./Img/codigo-binario.webp);
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  background-color: black;
+}
+
+/* Estilos para la barra de navegación */
+
+.navbar-brand {
+  font-weight: bold;
+  font-size: 30px !important;
+}
+
+a {
+  cursor: pointer;
+}
+
+.navbar-brand {
+  span:nth-child(1),
+  span:nth-child(2) {
+    transition: color 1s;
+  }
+}
+
+.navbar-brand:hover {
+  span:nth-child(1) {
+    color: red;
+  }
+
+  span:nth-child(2) {
+    color: blue;
+  }
+}
+
+.navbar-brand:not(:hover) {
+  span:nth-child(1) {
+    color: rgba(255, 0, 0, 0.486);
+  }
+
+  span:nth-child(2) {
+    color: rgba(0, 0, 255, 0.473);
+  }
+}
+
+/* Estilos para los títulos y textos */
+
+h1 {
+  font-weight: bold;
+  text-align: center;
+}
+
+.center {
+  text-align: center;
+}
+
+/* Estilos para los textarea */
+
+textarea {
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  min-height: 64px !important;
+  max-height: 205px;
+  resize: vertical !important;
+  transition: transform 2s;
+}
+
+textarea:hover {
+    transform: scale(1.01);
+}
+
+#firstTextareaContainer textarea {
+  background-color: #330000;
+  color: #ff9999;
+  border: 2px solid #660000;
+  border-radius: 8px;
+  box-shadow: -5px 5px 10px rgba(255, 0, 0, 0.5);
+}
+
+.col-md-6.me-3 textarea::placeholder {
+  color: #ff9999;
+}
+
+#secondTextareaContainer textarea {
+  background-color: #000033;
+  color: #9999ff;
+  border: 2px solid #000066;
+  border-radius: 8px;
+  box-shadow: 5px 5px 10px rgba(0, 0, 255, 0.5);
+}
+
+/* Estilos para los botones */
+
+#firstTextareaContainer button {
+  background-color: #660000;
+  color: #ffcccc;
+  border: 2px solid #990000;
+  transition: transform 0.5s;
+}
+
+#firstTextareaContainer button:hover {
+  background-color: #990000;
+  border: 2px solid #c70000;
+  transform: scale(1.05);
+  transition: transform 0.3s;
+}
+
+#firstTextareaContainer button:active {
+    transform: scale(1.03);
+    transition: transform 0.1s;
+}
+
+#secondTextareaContainer button {
+  width: 50%;
+  background-color: #000066;
+  color: #ccccff;
+  border: 2px solid #000099;
+  transition: transform 0.5s;
+}
+
+#secondTextareaContainer button:hover {
+  background-color: #000099;
+  border: 2px solid #0000c4;
+  transform: scale(1.05);
+  transition: transform 0.3s;
+}
+
+#secondTextareaContainer button:active {
+    transform: scale(1.03);
+    transition: transform 0.1s;
+}
+
+/* Estilos para el footer */
+
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+/* media queries */
+
+@media (max-width: 768px) {
+  .navbar-brand {
+    span:nth-child(1),
+    span:nth-child(2) {
+      transition: unset;
+    }
+  }
+
+  .navbar-brand:not(:hover) {
+    span:nth-child(1) {
+      color: red;
+    }
+    span:nth-child(2) {
+      color: blue;
+    }
+  }
+
+  .texts {
+    display: flex;
+    flex-direction: column;
+  }
+
+  #firstTextareaContainer textarea {
+    box-shadow: 0px -10px 10px rgba(255, 0, 0, 0.5),
+      5px 0px 10px rgba(255, 0, 0, 0.5), -5px 0px 10px rgba(255, 0, 0, 0.5);
+  }
+
+  #firstTextareaContainer {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-right: 0px !important;
+  }
+
+  #secondTextareaContainer textarea {
+    box-shadow: 0px -10px 10px rgba(0, 0, 255, 0.5),
+      5px 0px 10px rgba(0, 0, 255, 0.5), -5px 0px 10px rgba(0, 0, 255, 0.5);
+  }
+
+  #secondTextareaContainer {
+    display: flex;
+    flex-direction: column !important;
+    align-items: center !important;
+    justify-content: center !important;
+    margin-left: 0px !important;
+  }
+
+  #firstTextareaContainer button:hover {
+    background-color: #660000;
+    color: #ffcccc;
+    border: 2px solid #990000;
+    transition: transform 0.3s;
+  }
+
+  #firstTextareaContainer button:active{
+    transform: scale(1.02);
+  }
+
+  #secondTextareaContainer button:hover {
+    background-color: #000066;
+    color: #ccccff;
+    border: 2px solid #000099;
+    transition: transform 0.3s;
+  }
+
+  #secondTextareaContainer button:active{
+    transform: scale(1.02);
+  }
+
+  footer {
+    position: unset;
+    bottom: unset;
+    width: 100%;
+  }
+}
